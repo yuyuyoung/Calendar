@@ -72,11 +72,7 @@ class YYCalendar: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
             
             self.timeLabel.text = newDate
             
-            UIView .transitionWithView(self, duration: 0.5, options: .TransitionCurlUp, animations: { () -> Void in
-
-                }) { (complection) -> Void in
-                   self.collectionView.reloadData()
-            }
+            self.collectionView.reloadData()
         }
     }
     
@@ -204,11 +200,13 @@ class YYCalendar: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func toNextMonth() {
-        self.date = self.nextMonth(date)
+        self.date = self.nextMonth(self.date)
+
+        UIView.transitionWithView(self, duration: 0.5, options: .TransitionCurlUp, animations: nil, completion: nil)
     }
-    
     func toLastMonth() {
         self.date = self.lastMonth(date)
+        UIView.transitionWithView(self, duration: 0.5, options: .TransitionCurlDown, animations: nil, completion: nil)
     }
 
     /*
